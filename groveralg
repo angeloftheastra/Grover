@@ -3,9 +3,28 @@ from qiskit import QuantumCircuit
 from qiskit_aer import AerSimulator
 from qiskit_aer import Aer
 
-oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
-oracleCircuit.cz(0,1)
-oracleCircuit.to_gate()
+
+number = input("Add 01 or 00 or 10 or 11: ")
+
+if number == "11":
+    oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
+    oracleCircuit.cz(0,1)
+    oracleCircuit.to_gate()
+elif number == "10":
+    oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
+    oracleCircuit.x(1)
+    oracleCircuit.cz(0,1)
+    oracleCircuit.to_gate()
+elif number == "00":
+    oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
+    oracleCircuit.x([0,1])
+    oracleCircuit.cz(0,1)
+    oracleCircuit.to_gate()
+elif number == "01":
+    oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
+    oracleCircuit.x(0)
+    oracleCircuit.cz(0,1)
+    oracleCircuit.to_gate()
 
 
 mainCircuit = QuantumCircuit(2,2)
@@ -22,5 +41,8 @@ quantumReflection.h([0,1])
 quantumReflection.to_gate()
 mainCircuit.append(quantumReflection,[0,1])
 mainCircuit.measure([0,1],[0,1])
+
+
+
 
 mainCircuit.draw(output='mpl')
