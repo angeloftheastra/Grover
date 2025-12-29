@@ -1,0 +1,26 @@
+from qiskit import *
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
+from qiskit_aer import Aer
+
+oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
+oracleCircuit.cz(0,1)
+oracleCircuit.to_gate()
+
+
+mainCircuit = QuantumCircuit(2,2)
+mainCircuit.h([0,1])
+mainCircuit.append(oracleCircuit,[0,1])
+
+
+
+quantumReflection = QuantumCircuit(2,name="quantumReflection")
+quantumReflection.h([0,1])
+quantumReflection.z([0,1])
+quantumReflection.cz(0,1)
+quantumReflection.h([0,1])
+quantumReflection.to_gate()
+mainCircuit.append(quantumReflection,[0,1])
+mainCircuit.measure([0,1],[0,1])
+
+mainCircuit.draw(output='mpl')
