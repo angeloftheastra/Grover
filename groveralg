@@ -14,16 +14,19 @@ elif number == "10":
     oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
     oracleCircuit.x(1)
     oracleCircuit.cz(0,1)
+    oracleCircuit.x(1)
     oracleCircuit.to_gate()
 elif number == "00":
     oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
     oracleCircuit.x([0,1])
     oracleCircuit.cz(0,1)
+    oracleCircuit.x([0,1])
     oracleCircuit.to_gate()
 elif number == "01":
     oracleCircuit = QuantumCircuit(2,name = "oracleCircuit")
     oracleCircuit.x(0)
     oracleCircuit.cz(0,1)
+    oracleCircuit.x(0)
     oracleCircuit.to_gate()
 
 
